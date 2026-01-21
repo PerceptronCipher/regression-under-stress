@@ -55,7 +55,7 @@ def add_multicollinearity(X, correlated_pairs=[(0, 1)], noise_level=0.01, random
     """
     Parameters:
     X (pd.DataFrame): original feature set
-    n_correlated (int): number of features to make correlated
+    correlated_pairs (int): number of features to make correlated
     correlation_strength (float): strength of correlation (0 to 1)
     random_state (int): seed for reproducibility
     Returns:
@@ -72,7 +72,7 @@ def add_multicollinearity(X, correlated_pairs=[(0, 1)], noise_level=0.01, random
     return X_corr
 
 
-if __name__ == 'main':
+if __name__ == "__main__":
     X, y = generate_base_dataset()
     X_corr = add_multicollinearity(X, correlated_pairs=[(0, 1)])
     print(X.head())
@@ -95,7 +95,7 @@ def downsample_dataset(X, y, n_samples=50, random_state=42):
     """
     np.random.seed(random_state)
     idx = np.random.choice(X.index, size=n_samples, replace=False)
-    return X.loc[idx].reset_index(drop=True), y.loc[idx].reset_index(drops=True)
+    return X.loc[idx].reset_index(drop=True), y.loc[idx].reset_index(drop=True)
 
 # Quick test
 if __name__ == "__main__":
