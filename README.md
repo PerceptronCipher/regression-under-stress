@@ -85,6 +85,13 @@ notebooks/01_regression_under_stress.ipynb
 4. Observe outputs and plots.
 ```
 
+```
+Future work could include:
+- ElasticNet regression for hybrid regularization
+- Applying the experiment to real-world datasets
+- Adding automated feature importance analysis
+```
+
 🔹 Contact
 
 If you want to reach out for collaboration, questions, or feedback:
