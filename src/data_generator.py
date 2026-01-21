@@ -50,3 +50,55 @@ if __name__ == "__main__":
     print(y.head())
     print(y_noisy.head())
 
+# Introduce multicolinearity among features
+def add_multicollinearity(X, correlated_pairs=[(0, 1)], noise_level=0.01, random_state=42):
+    """
+    Parameters:
+    X (pd.DataFrame): original feature set
+    n_correlated (int): number of features to make correlated
+    correlation_strength (float): strength of correlation (0 to 1)
+    random_state (int): seed for reproducibility
+    Returns:
+    pd.DataFrame: feature set with multicollinearity induced
+    """
+
+    np.random.seed(random_state)
+    X_corr = X.copy()
+    
+    for base_idx, corr_idx in correlated_pairs:
+        X_corr.iloc[:, corr_idx] = X_corr.iloc[:, base_idx] * 0.8 + \
+        np.random.normal(0, noise_level, size=X.shape[0])
+
+    return X_corr
+
+
+if __name__ == 'main':
+    X, y = generate_base_dataset()
+    X_corr = add_multicollinearity(X, correlated_pairs=[(0, 1)])
+    print(X.head())
+    print(X_corr.head())
+
+
+# Downsample the base dataset
+def downsample_dataset(X, y, n_samples=50, random_state=42):
+    """
+    Return smaller sample from base dataset
+    
+    Parameters:
+    X (pd.DataFrame): features
+    y (pd.Series): target
+    n_samples(int): number of samples
+    random_state (int): random seed
+
+    Retruns:
+    X_small, y_small
+    """
+    np.random.seed(random_state)
+    idx = np.random.choice(X.index, size=n_samples, replace=False)
+    return X.loc[idx].reset_index(drop=True), y.loc[idx].reset_index(drops=True)
+
+# Quick test
+if __name__ == "__main__":
+    X, y = generate_base_dataset()
+    X_small, y_small = downsample_dataset(X, y, n_samples=50)
+    print(X_small.shape, y_small.shape)
