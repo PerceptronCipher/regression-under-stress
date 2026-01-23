@@ -1,29 +1,40 @@
 # Regression Under Stress
 ``` 
-This project explores how different regression models behave under stress conditions like noise, multicollinearity, and small datasets.  
-Linear, Polynomial, Ridge, and Lasso regressions are tested to reveal their strengths and weaknesses in real-world-like scenarios.  
-Results show when simplicity wins, when complexity backfires, and how regularization can stabilize predictions, giving clear guidance for model selection.
+How Linear, Polynomial, Ridge, and Lasso Regression behave when conditions stop being ideal
 ```
+# Project Overview
+Regression models are often introduced under clean, ideal assumptions.
+In practice, data is noisy, features are correlated, and sample sizes are limited.
 
-A controlled experiment demonstrating how different regression models behave under various stress conditions like noise, multicollinearity, and small sample sizes.
+This project explores how common regression algorithms behave under stress, using both controlled synthetic datasets and a real-world validation on the California Housing dataset.
 
----
+Rather than asking “Which model performs best?”, the focus is on why certain models succeed or fail under specific conditions.
 
-## 🔹 Motivation
-
-In real-world regression problems, choosing a model isn’t just about getting the best fit. Different datasets can expose weaknesses in each approach:  
-- Noise in the target can mislead complex models.  
-- Multicollinearity can destabilize coefficients.  
-- Small datasets can make even simple models overfit.  
-
-This project explores **Linear, Polynomial, Ridge, and Lasso regressions** under these scenarios, highlighting when each model works — and when it doesn’t.
 
 ---
 
-## 🔹 Dataset
+## 🔹 Objectives
 
-We use a **synthetic dataset** generated to keep everything controlled and reproducible:
+- Compare regression models under different stress scenarios
 
+- Understand the impact of:
+
+   - Noise
+
+   - Multicollinearity
+
+   - Small sample sizes
+
+- Examine the role of regularization (Ridge & Lasso)
+
+- Validate synthetic insights on real-world data
+
+---
+
+## 🧪 Experiments Covered
+
+1. **Synthetic Stress Tests**
+Controlled datasets were generated to isolate specific challenges:
 - **Base dataset:** 500 samples, 6 numerical features, 1 target.  
 - **Variants created:**  
   1. **Noisy target** – Gaussian noise added.  
@@ -44,6 +55,29 @@ We use a **synthetic dataset** generated to keep everything controlled and repro
 | Lasso Regression (alpha=0.1) | Promotes sparsity, mild regularization |
 
 **Metrics evaluated:** RMSE and R² on test sets for all dataset variants.
+
+---
+
+---
+
+2. **Real-World Validation**
+**California Housing Dataset**
+
+To test whether insights from synthetic data generalize to real-world scenarios, a final validation was performed using the California Housing dataset.
+
+- Feature: Median Income (MedInc)
+
+- Target: Median House Value (MedHouseVal)
+
+- Models compared:
+
+    - Linear Regression
+
+    - Polynomial Regression (degree = 2)
+
+This single-feature setup prioritizes interpretability over complexity.
+
+Visualization (Test Set)
 
 ---
 
@@ -70,6 +104,38 @@ We use a **synthetic dataset** generated to keep everything controlled and repro
 
 ---
 
+---
+
+📊 **Key Takeaways**
+
+- Linear Regression remains robust under clean and real-world conditions
+
+- Polynomial Regression improves fit but introduces overfitting risk
+
+- Ridge Regression stabilizes performance under multicollinearity
+
+- Lasso Regression may underperform when relationships are smooth and continuous
+
+- Synthetic stress tests are informative — but real-world validation is essential
+
+---
+
+**📁 Project Structure**
+```
+regression-under-stress/
+│
+├── README.md
+├── LICENSE
+├── requirements.txt
+├── notebooks/
+│   └── 01_regression_under_stress.ipynb
+├── data/
+│   └── README.md
+├── screenshots/
+│   └── linear_vs_polynomial_test.png
+└── src/
+```
+
 ## 🔹 How to Run
 
 1. Clone the repo:  
@@ -85,18 +151,12 @@ notebooks/01_regression_under_stress.ipynb
 4. Observe outputs and plots.
 ```
 
-```
-Future work could include:
-- ElasticNet regression for hybrid regularization
-- Applying the experiment to real-world datasets
-- Adding automated feature importance analysis
-```
 
-🔹 Contact
+**📬 Contact**
 
 If you want to reach out for collaboration, questions, or feedback:
 
-Name: Ibrahim Boluwatife Adeyemi
+Name: Adeyemi Boluwatife
 
 Email: adeyemiboluwatife.olayinka@gmail.com
 
